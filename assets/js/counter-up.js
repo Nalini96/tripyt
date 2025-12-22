@@ -1,15 +1,15 @@
-(function (₹) {
-	₹.fn.countTo = function (options) {
+(function ($) {
+	$.fn.countTo = function (options) {
 		options = options || {};
 		
-		return ₹(this).each(function () {
+		return $(this).each(function () {
 			// set options for current element
-			var settings = ₹.extend({}, ₹.fn.countTo.defaults, {
-				from:            ₹(this).data('from'),
-				to:              ₹(this).data('to'),
-				speed:           ₹(this).data('speed'),
-				refreshInterval: ₹(this).data('refresh-interval'),
-				decimals:        ₹(this).data('decimals')
+			var settings = $.extend({}, $.fn.countTo.defaults, {
+				from:            $(this).data('from'),
+				to:              $(this).data('to'),
+				speed:           $(this).data('speed'),
+				refreshInterval: $(this).data('refresh-interval'),
+				decimals:        $(this).data('decimals')
 			}, options);
 			
 			// how many times to update the value, and how much to increment the value on each update
@@ -18,12 +18,12 @@
 			
 			// references & variables that will change with each update
 			var self = this,
-				₹self = ₹(this),
+				$self = $(this),
 				loopCount = 0,
 				value = settings.from,
-				data = ₹self.data('countTo') || {};
+				data = $self.data('countTo') || {};
 			
-			₹self.data('countTo', data);
+			$self.data('countTo', data);
 			
 			// if an existing interval can be found, clear it first
 			if (data.interval) {
@@ -46,7 +46,7 @@
 				
 				if (loopCount >= loops) {
 					// remove the interval
-					₹self.removeData('countTo');
+					$self.removeData('countTo');
 					clearInterval(data.interval);
 					value = settings.to;
 					
@@ -58,12 +58,12 @@
 			
 			function render(value) {
 				var formattedValue = settings.formatter.call(self, value, settings);
-				₹self.html(formattedValue);
+				$self.html(formattedValue);
 			}
 		});
 	};
 	
-	₹.fn.countTo.defaults = {
+	$.fn.countTo.defaults = {
 		from: 0,               // the number the element should start at
 		to: 0,                 // the number the element should end at
 		speed: 1000,           // how long it should take to count between the target numbers
