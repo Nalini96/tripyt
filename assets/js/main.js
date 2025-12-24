@@ -405,17 +405,37 @@ Version         : 1.0
 
 
     // price slider
-    $(function () {
-        $(".price-range").slider({
-            step: 500,
-            range: true,
-            min: 0,
-            max: 10000,
-            values: [1500, 5000],
-            slide: function (event, ui) { $(".priceRange").val("$" + ui.values[0].toLocaleString() + " - $" + ui.values[1].toLocaleString()); }
-        });
-        $(".priceRange").val("$" + $(".price-range").slider("values", 0).toLocaleString() + " - $" + $(".price-range").slider("values", 1).toLocaleString());
+    // $(function () {
+    //     $(".price-range").slider({
+    //         step: 500,
+    //         range: true,
+    //         min: 0,
+    //         max:897349,
+    //         values: [134602, 448674],
+    //         slide: function (event, ui) { $(".priceRange").val("$" + ui.values[0].toLocaleString() + " - $" + ui.values[1].toLocaleString()); }
+    //     });
+    //     $(".priceRange").val("$" + $(".price-range").slider("values", 0).toLocaleString() + " - $" + $(".price-range").slider("values", 1).toLocaleString());
+    // });
+$(function () {
+    $(".price-range").slider({
+        step: 500,
+        range: true,
+        min: 0,
+        max: 897349,
+        values: [134602, 448674],
+        slide: function (event, ui) {
+            $(".priceRange").val(
+                "₹" + ui.values[0].toLocaleString("en-IN") +
+                " - ₹" + ui.values[1].toLocaleString("en-IN")
+            );
+        }
     });
+
+    $(".priceRange").val(
+        "₹" + $(".price-range").slider("values", 0).toLocaleString("en-IN") +
+        " - ₹" + $(".price-range").slider("values", 1).toLocaleString("en-IN")
+    );
+});
 
 
     // profile image btn
